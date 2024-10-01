@@ -39,7 +39,7 @@ void Load(){
 	
 	//reset paddle position
 	paddles[0].setPosition(Vector2f(paddleOffsetWall + paddleSize.x / 2.f, gameHeight / 2.f));
-	paddles[1].setPosition(Vector2f(paddleOffsetWall + paddleSize.x / 2.f, gameHeight / 2.f));
+	paddles[1].setPosition(Vector2f(gameWidth - paddleOffsetWall - paddleSize.x / 2.f, gameHeight / 2.f));
 	
 	//reset ball position
 	ball.setPosition(gameWidth / 2, gameHeight / 2);
@@ -50,7 +50,7 @@ void Load(){
 void Reset(){
 	//reset paddle position
 	paddles[0].setPosition(Vector2f(paddleOffsetWall + paddleSize.x / 2.f, gameHeight / 2.f));
-	paddles[1].setPosition(Vector2f(paddleOffsetWall + paddleSize.x / 2.f, gameHeight / 2.f));
+	paddles[1].setPosition(Vector2f(gameWidth - paddleOffsetWall - paddleSize.x / 2.f, gameHeight / 2.f));
 	
 	//reset ball position
 	ball.setPosition(gameWidth / 2, gameHeight / 2);
@@ -100,26 +100,24 @@ void Update(RenderWindow &window){
 	ball.move(ballVelocity * dt);
 	
 	//check ball collision
-	const floast bx = ball.getPosition().x;
+	const float bx = ball.getPosition().x;
 	const float by = ball.getPosition().y;
 	
 	if(by > gameHeight){
 		//bottom wall
 		ballVelocity.x *= velocityMultiplier;
 		ballVelocity.y *= -velocityMultiplier;
-		ball.move(Vector2(0.f, -10.f));
+		ball.move(Vector2f(0.f, -10.f));
 	} else if(by < 0){
 		//top wall
 		ballVelocity.x *= velocityMultiplier;
 		ballVelocity.y *= -velocityMultiplier;
-		ball.move(Vector2(0.f, 10.f));
+		ball.move(Vector2f(0.f, 10.f));
 	} else if(bx > gameWidth || bx < 0){ //if someone scores, reset
 		Reset();
-/*
 	} else if(bx < paddleSize.x + paddleOffsetWall && by > paddles[0].getPosition().y - (paddleSize.y * 0.5) && by < paddles[0].getPosition.y + (paddleSize.y * 0.5)){ //if the ball collides with the left paddle, bounce the ball
 		
 	} else if(bx < paddleSize.x + paddleOffsetWall && by > paddles[1].getPosition().y - (paddleSize.y * 0.5) && by < paddles[1].getPosition.y + (paddleSize.y * 0.5)){ //if the ball collides with the right paddle, bounce the ball
-*/
 	};
 }
 
