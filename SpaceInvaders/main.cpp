@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "ship.h"
 
 using namespace sf;
 using namespace std;
@@ -11,6 +12,7 @@ const Keyboard::Key controls[4] = {
 
 sf::Texture spritesheet;
 sf::Sprite invader;
+std::vector<Ship *> ships;
 
 const int gameWidth = 800;
 const int gameHeight = 600;
